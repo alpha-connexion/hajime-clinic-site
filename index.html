@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>はじめクリニック｜北摂・豊中市の精神科・内科・小児科｜外来・訪問診療</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#F5811E; --orange-deep:#D9600A;
+    --green:#2F7D4F; --green-hover:#37914F; --green-soft:#EEF5F0;
+    --amber:#FBA83C;
+    --orange-soft:#FFF3E7; --orange-soft2:#FFEAD6; --gold:#C4A24C;
+    --ink:#241C13; --ink-soft:#665847; --ink-mute:#93856F;
+    --line:#EFE3D2; --white:#FFFFFF; --cream:#FFFBF6;
+    --sat:#3A6EA5; --sun:#C0392B;
+    --cell-out:#E7F1EB; --cell-home:#FDEBD8; --cell-off:#F4F1EC;
+    --display:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
+    --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-size:18px;line-height:1.9;color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased;line-break:strict;word-break:normal}
+  h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.45}
+  a{color:inherit} img{max-width:100%;display:block} svg{display:block}
+  .wrap{width:min(1140px,92vw);margin-inline:auto}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:900;font-size:17px;text-decoration:none;padding:15px 26px;border-radius:14px;min-height:56px;cursor:pointer;border:2.5px solid transparent;transition:transform .08s,background .2s,box-shadow .2s}
+  .btn--primary{background:var(--green);color:#fff;box-shadow:0 6px 18px rgba(47,125,79,.26)}
+  .btn--primary:hover{background:var(--green-hover)}
+  .btn--ghost{background:#fff;color:var(--ink);border-color:var(--green)}
+  .btn--ghost:hover{background:var(--green-soft)}
+  .btn--link{background:transparent;border:none;color:var(--green);font-weight:900;min-height:auto;padding:6px 0;text-decoration:underline;text-underline-offset:4px}
+  .btn:active{transform:translateY(1px)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,251,246,.94);backdrop-filter:blur(10px);border-bottom:2px solid var(--orange)}
+  .bar{display:flex;align-items:center;gap:18px;min-height:78px;padding:10px 0}
+  .brand{display:flex;flex-direction:column;line-height:1.18;text-decoration:none}
+  .brand .corp{font-size:10px;letter-spacing:.14em;color:var(--orange-deep);font-weight:700}
+  .brand .name{font-family:var(--display);font-size:26px;font-weight:900;color:var(--orange-deep)}
+  nav.main{margin-left:auto;display:flex;align-items:center;gap:22px}
+  nav.main a{font-size:15px;font-weight:700;text-decoration:none;color:var(--ink);padding:6px 0;border-bottom:3px solid transparent;transition:border-color .2s}
+  nav.main a:hover{border-color:var(--orange)}
+  .actions{display:flex;align-items:center;gap:12px}
+  .tel-btn{display:inline-flex;flex-direction:column;align-items:flex-start;background:var(--green);color:#fff;text-decoration:none;padding:9px 18px;border-radius:12px;line-height:1.15;box-shadow:0 4px 14px rgba(47,125,79,.24)}
+  .tel-btn small{font-size:10.5px;font-weight:700;opacity:.95}
+  .tel-btn strong{font-family:var(--display);font-size:21px;font-weight:900}
+  .menu-toggle{display:none;background:#fff;border:2px solid var(--green);border-radius:10px;padding:10px 12px;font-weight:900;color:var(--green);cursor:pointer;line-height:1}
+
+  /* hero */
+  .hero{background:radial-gradient(760px 380px at 90% -12%,var(--orange-soft2),transparent 60%),linear-gradient(180deg,var(--orange-soft),var(--cream) 72%)}
+  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:center;padding:78px 0 70px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--orange);color:var(--orange-deep);font-weight:900;font-size:13px;padding:7px 16px;border-radius:999px;margin-bottom:24px}
+  .hero h1{font-size:clamp(32px,4.8vw,50px);color:var(--ink);margin-bottom:22px;font-weight:900}
+  .hero .lead{font-size:18.5px;color:var(--ink-soft);max-width:40ch;margin-bottom:32px;font-weight:500}
+  .who-row{display:flex;flex-wrap:wrap;gap:12px}
+  .hero-panel{background:#fff;border:2px solid var(--line);border-radius:20px;padding:8px 30px;box-shadow:0 14px 36px rgba(217,96,10,.10)}
+  .hrow{display:flex;align-items:center;gap:20px;padding:28px 4px;border-bottom:1px solid var(--line)}
+  .hrow:last-child{border-bottom:none}
+  .hrow .ic{width:52px;height:52px;flex:none;border-radius:13px;background:var(--orange-soft2);display:flex;align-items:center;justify-content:center}
+  .hrow .ic svg{width:26px;height:26px;stroke:var(--orange-deep);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .hrow h3{font-size:18.5px;color:var(--ink);font-weight:900;line-height:1.5}
+
+  section{padding:78px 0}
+  .kick{display:inline-block;font-size:13px;font-weight:900;letter-spacing:.1em;color:var(--orange-deep);margin-bottom:12px}
+  .sec-head h2{font-size:clamp(26px,3.3vw,34px);color:var(--ink);margin-bottom:14px;font-weight:900}
+  .sec-head p{color:var(--ink-soft);max-width:64ch;font-weight:500}
+  .sec-head{margin-bottom:40px}
+
+  /* tabs */
+  .tabs{background:var(--white)}
+  .tablist{display:flex;gap:8px;background:var(--orange-soft);border:2px solid var(--line);border-radius:16px;padding:7px;margin-bottom:34px;flex-wrap:wrap}
+  .tablist button{flex:1;min-width:150px;font-family:var(--display);font-weight:900;font-size:16px;color:var(--ink-soft);background:transparent;border:none;border-radius:11px;padding:15px 12px;cursor:pointer;transition:all .2s;min-height:56px}
+  .tablist button[aria-selected="true"]{background:var(--green);color:#fff;box-shadow:0 5px 14px rgba(47,125,79,.28)}
+  .panel{display:none} .panel.active{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 26px}
+  .chip{background:var(--orange-soft);border:2px solid var(--line);border-radius:999px;padding:9px 18px;font-weight:700;color:var(--ink);font-size:15.5px}
+  .chip b{color:var(--orange-deep)}
+  .lead-p{font-size:17.5px;color:var(--ink-soft);margin-bottom:22px;max-width:64ch;font-weight:500}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:12px 26px;margin:8px 0 28px}
+  .checks li{list-style:none;position:relative;padding:9px 0 9px 34px;font-size:16px;color:var(--ink);border-bottom:1px dashed var(--line)}
+  .checks li::before{content:"✓";position:absolute;left:4px;top:9px;width:22px;height:22px;background:var(--orange);color:#fff;font-weight:900;font-size:13px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+  .subhead{font-size:17px;margin:6px 0 12px;color:var(--orange-deep);font-weight:900}
+
+  /* hours */
+  .hours-legend{display:flex;flex-wrap:wrap;gap:10px 20px;margin-bottom:18px;font-size:14px;color:var(--ink-soft);font-weight:600}
+  .hours-legend span{display:flex;align-items:center;gap:8px}
+  .lg{display:inline-flex;align-items:center;justify-content:center;min-width:44px;padding:4px 12px;border-radius:8px;font-size:12.5px;font-weight:900}
+  .lg-o{background:var(--cell-out);color:var(--green)}
+  .lg-h{background:var(--cell-home);color:var(--orange-deep)}
+  .lg-x{background:var(--cell-off);color:var(--ink-mute)}
+  .hours{overflow-x:auto;margin:4px 0 8px}
+  .hours table{width:100%;min-width:460px;border-collapse:collapse;background:#fff;border:2px solid var(--line);border-radius:12px;overflow:hidden}
+  .hours th,.hours td{text-align:center;padding:14px 6px;font-size:15px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+  .hours th:last-child,.hours td:last-child{border-right:none}
+  .hours tbody tr:last-child td{border-bottom:none}
+  .hours thead th{background:var(--orange-soft);font-family:var(--display);font-weight:900;color:var(--ink);font-size:15px}
+  .hours thead th.sat{color:var(--sat)} .hours thead th.sun{color:var(--sun)}
+  .hours td.tt{background:var(--orange-soft);font-weight:900;font-size:12.5px;color:var(--ink);white-space:nowrap;text-align:left;padding-left:14px}
+  .hours td.o{background:var(--cell-out);color:var(--green);font-weight:900;font-size:14.5px}
+  .hours td.h{background:var(--cell-home);color:var(--orange-deep);font-weight:900;font-size:14.5px}
+  .hours td.x{background:#fff;color:var(--ink-mute);font-size:16px}
+  .hours-notes{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:7px}
+  .hours-notes li{font-size:14px;color:var(--ink-soft);font-weight:500;padding-left:20px;position:relative;line-height:1.7}
+  .hours-notes li::before{content:"※";position:absolute;left:0;color:var(--orange-deep);font-weight:900}
+  .hours-notes li b{color:var(--ink)}
+  .hours-cta{margin-top:26px;background:#fff;border:2px solid var(--green);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+  .hours-cta .t{flex:1;min-width:260px}
+  .hours-cta strong{font-family:var(--display);font-size:18px;color:var(--ink);font-weight:900;display:block;margin-bottom:4px}
+  .hours-cta p{font-size:15px;color:var(--ink-soft);font-weight:500}
+  .hours-m{display:none;flex-direction:column;gap:10px;margin:4px 0 8px}
+  .hm-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:2px solid var(--line);border-radius:12px;padding:14px 16px}
+  .hm-day{font-family:var(--display);font-weight:900;color:var(--ink);font-size:16px;min-width:70px}
+  .hm-tag{font-size:13px;font-weight:900;padding:5px 12px;border-radius:999px}
+  .hm-tag.o{background:var(--cell-out);color:var(--green)}
+  .hm-tag.h{background:var(--cell-home);color:var(--orange-deep)}
+  .hm-tag.x{background:var(--cell-off);color:var(--ink-mute)}
+
+  .area-box{background:var(--orange-soft);border:2px solid var(--line);border-radius:16px;padding:24px 26px;margin:8px 0 24px}
+  .area-box h4{font-size:17px;color:var(--ink);margin-bottom:8px}
+  .area-box .note{font-size:14px;color:var(--ink-mute);font-weight:500;margin-top:12px}
+  .area-core{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 6px}
+  .area-core span{background:#fff;border:2px solid var(--orange);border-radius:8px;padding:6px 14px;font-weight:900;font-size:14.5px;color:var(--ink)}
+  .area-wide{font-size:14.5px;color:var(--ink-soft);font-weight:500}
+
+  .acc{border:2px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:12px;background:#fff}
+  .acc-trig{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff;border:none;padding:18px 22px;font-family:var(--display);font-weight:900;font-size:16.5px;color:var(--ink);cursor:pointer;text-align:left;min-height:56px}
+  .acc-trig .plus{flex:none;width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:18px;transition:transform .2s}
+  .acc.open .acc-trig .plus{transform:rotate(45deg)}
+  .acc-body{display:none;padding:0 22px 20px;color:var(--ink-soft);font-weight:500;line-height:1.9}
+  .acc.open .acc-body{display:block}
+  .acc-body .step-row{display:flex;gap:14px;padding:11px 0;border-top:1px solid var(--line)}
+  .acc-body .step-row:first-child{border-top:none}
+  .acc-body .step-row .n{flex:none;width:30px;height:30px;background:var(--orange);color:#fff;border-radius:50%;font-family:var(--display);font-weight:900;display:flex;align-items:center;justify-content:center}
+  .tab-foot{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-weight:700;color:var(--ink-soft)}
+
+  /* features */
+  .why{background:var(--orange-soft)}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .why-card{background:#fff;border:2px solid var(--line);border-radius:16px;padding:30px 26px}
+  .why-card .ic{width:56px;height:56px;border-radius:14px;background:var(--orange-soft2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .why-card .ic svg{width:28px;height:28px;stroke:var(--orange-deep);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .why-card h3{font-size:18.5px;color:var(--ink);margin-bottom:10px;font-weight:900}
+  .why-card p{font-size:15px;color:var(--ink-soft);font-weight:500;line-height:1.85}
+
+  /* doctors */
+  .docs{background:var(--white)}
+  .doc-list{display:flex;flex-direction:column;gap:12px}
+  .doc{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:var(--cream);border:2px solid var(--line);border-radius:16px;padding:16px 26px;transition:box-shadow .2s,transform .2s}
+  .doc:hover{box-shadow:0 8px 22px rgba(217,96,10,.1);transform:translateY(-2px)}
+  .avatar{width:52px;height:52px;flex:none;border-radius:50%;background:linear-gradient(155deg,var(--orange),var(--amber));display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 12px rgba(217,96,10,.2)}
+  .avatar svg{width:26px;height:26px;stroke:#fff;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .doc-main{display:flex;align-items:center;justify-content:space-between;gap:16px 22px;flex-wrap:wrap}
+  .doc-id{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .doc-id .role{font-size:11.5px;color:var(--orange-deep);font-weight:900;background:var(--orange-soft);padding:4px 11px;border-radius:7px;white-space:nowrap}
+  .doc-id .name{font-family:var(--display);font-size:19px;color:var(--ink);font-weight:900}
+  .doc-id .name .fk{font-family:var(--sans);font-size:11.5px;color:var(--ink-mute);font-weight:500;margin-left:8px}
+  .doc-spec{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .doc-spec .badge{background:var(--orange-soft2);color:var(--orange-deep);font-size:12.5px;font-weight:900;padding:5px 14px;border-radius:999px;white-space:nowrap}
+  .doc-spec .dom{font-size:14px;color:var(--ink-soft);font-weight:700;white-space:nowrap}
+
+  /* mission */
+  .mission{background:linear-gradient(140deg,#37835B,#2C6E49);color:#EAF3ED;text-align:center}
+  .mission .kick{color:var(--amber)}
+  .mission h2{font-size:clamp(22px,3vw,30px);color:#fff;margin-bottom:18px;line-height:1.6}
+  .mission p{max-width:60ch;margin:0 auto;color:#D6E8DC;font-weight:500}
+
+  /* contact */
+  .contact{background:var(--orange-soft)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:32px 34px}
+  .card h3{font-size:19px;color:var(--ink);margin-bottom:18px;font-weight:900}
+  .map{border-radius:12px;overflow:hidden;border:2px solid var(--line);min-height:220px;margin-bottom:18px}
+  .map iframe{width:100%;height:100%;min-height:220px;border:0;display:block}
+  .arow{padding:12px 0;border-bottom:1px solid var(--line)}
+  .arow:last-child{border-bottom:none}
+  .arow .k{font-size:11.5px;color:var(--orange-deep);font-weight:900;margin-bottom:4px}
+  .arow .v{font-size:16px;color:var(--ink);font-weight:700}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .badges span{background:var(--orange-soft);border:2px solid var(--line);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:900;color:var(--ink)}
+  .phone-block{background:var(--green-soft);border-radius:12px;padding:18px;margin-bottom:22px;text-align:center}
+  .phone-block .lbl{font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+  .phone-block a{font-family:var(--display);font-size:30px;font-weight:900;color:var(--green);text-decoration:none;display:block}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:13.5px;font-weight:900;color:var(--ink);margin-bottom:6px}
+  .field label .req{color:var(--orange-deep);font-size:11px;margin-left:6px}
+  .field input,.field select,.field textarea{width:100%;border:2px solid var(--line);border-radius:10px;padding:12px 14px;font-family:var(--sans);font-size:15.5px;color:var(--ink);background:var(--cream)}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green)}
+  .field textarea{min-height:96px;resize:vertical}
+  .form-note{font-size:12.5px;color:var(--ink-mute);font-weight:500;margin-top:10px}
+
+  /* recruit */
+  .recruit{background:var(--white)}
+  .rec-band{background:var(--orange-soft);border:2px solid var(--line);border-radius:20px;padding:36px 40px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  .rec-band .txt{flex:1;min-width:260px}
+  .rec-band h2{font-size:clamp(22px,2.8vw,28px);color:var(--ink);margin-bottom:10px;font-weight:900}
+  .rec-band p{color:var(--ink-soft);font-weight:500;margin-bottom:8px}
+  .rec-band .role{font-weight:700;color:var(--ink)} .rec-band .role b{color:var(--orange-deep)}
+  .rec-actions{display:flex;flex-direction:column;gap:10px;min-width:220px}
+
+  .faq{background:var(--orange-soft)}
+
+  /* footer */
+  footer{background:var(--orange-soft2);color:var(--ink);padding:46px 0 96px;font-size:14.5px;border-top:3px solid var(--orange)}
+  .foot-top{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid rgba(36,28,19,.12)}
+  footer .fcorp{font-size:10.5px;letter-spacing:.12em;color:var(--orange-deep);font-weight:900}
+  footer .fname{font-family:var(--display);font-size:22px;color:var(--ink);font-weight:900;margin:2px 0 8px}
+  footer .fadd{line-height:1.7;font-size:14px;color:var(--ink-soft)}
+  .foot-contact{text-align:right}
+  footer .ftel{font-family:var(--display);font-size:25px;color:var(--green);font-weight:900;text-decoration:none}
+  .foot-links{display:flex;gap:16px;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}
+  .foot-links a{color:var(--ink-soft);text-decoration:none;font-weight:700;font-size:13.5px}
+  .foot-links a:hover{color:var(--orange-deep)}
+  .copy{padding-top:20px;font-size:12.5px;color:var(--ink-mute);text-align:center}
+
+  .mbar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:70;background:#fff;border-top:2px solid var(--orange);box-shadow:0 -4px 16px rgba(0,0,0,.08)}
+  .mbar-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr}
+  .mbar a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;text-decoration:none;font-weight:900;font-size:11.5px;color:var(--ink);border-right:1px solid var(--line)}
+  .mbar a:last-child{border-right:none}
+  .mbar a.call{background:var(--green);color:#fff}
+  .mbar a svg{width:22px;height:22px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  .to-top{position:fixed;right:18px;bottom:82px;z-index:65;width:48px;height:48px;border-radius:50%;background:var(--green);color:#fff;border:none;font-size:22px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;box-shadow:0 6px 18px rgba(47,125,79,.3)}
+  .to-top.show{opacity:1;pointer-events:auto}
+
+  a:focus-visible,.btn:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:8px}
+
+  @media (min-width:941px){.to-top{bottom:24px}}
+  @media (max-width:940px){
+    .hero-grid,.contact-grid{grid-template-columns:1fr}
+    .why-grid{grid-template-columns:1fr}
+    .checks{grid-template-columns:1fr}
+    .foot-top{flex-direction:column}.foot-contact{text-align:left}.foot-links{justify-content:flex-start}
+    nav.main{display:none;position:absolute;top:78px;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--cream);border-bottom:2px solid var(--orange);padding:10px 6vw 18px}
+    nav.main.open{display:flex}
+    nav.main a{padding:13px 2px;border-bottom:1px solid var(--line)}
+    .actions{margin-left:auto}
+    .menu-toggle{display:inline-block}
+    .tel-btn{padding:7px 12px}.tel-btn strong{font-size:18px}
+    .mbar{display:block} body{padding-bottom:66px}
+    .rec-band{padding:28px 24px}.rec-actions{width:100%}
+    .doc-main{justify-content:flex-start}
+  }
+  @media (max-width:560px){
+    body{font-size:17px}section{padding:54px 0}
+    .tel-btn{display:none}
+    .hero h1{font-size:27px;line-height:1.55}.hero h1 br{display:none}
+    .hero .lead{font-size:17px}
+    .who-row{flex-direction:column}.who-row .btn{width:100%}
+    .tablist{flex-direction:column}.tablist button{width:100%;min-width:0}
+    .hours,.hours-legend{display:none}.hours-m{display:flex}
+    .hours-cta{padding:20px}.hours-cta .btn{width:100%}.hours-cta .t{min-width:0}
+    .mission h2{font-size:22px}.mission h2 br{display:none}
+    .rec-actions .btn{width:100%}.rec-band .txt{min-width:0}
+    .doc{padding:16px 20px}.doc-spec .dom{white-space:normal}
+    .card{padding:24px 22px}
+    .area-box{padding:20px 20px}
+    .hero-panel{padding:6px 22px}.hrow{padding:20px 2px}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top">
+      <span class="corp">一般社団法人 佳純会</span>
+      <span class="name">はじめクリニック</span>
+    </a>
+    <nav class="main" id="nav">
+      <a href="#care">診療案内</a>
+      <a href="#hours">診療時間</a>
+      <a href="#docs">医師紹介</a>
+      <a href="#contact">アクセス・お問い合わせ</a>
+      <a href="#recruit">採用情報</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <div class="actions">
+      <a class="tel-btn" href="tel:0676590299"><small>完全予約制・お電話で</small><strong>06-7659-0299</strong></a>
+      <button class="menu-toggle" aria-label="メニュー" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">北摂・豊中市｜精神科・内科・小児科</span>
+        <h1>北摂の、こころとからだの<br>かかりつけ医。</h1>
+        <p class="lead">精神科・内科・小児科の外来診療と、通院がむずかしい方への訪問診療。お子さまからご高齢の方まで、地域の安心を支えます。</p>
+        <div class="who-row">
+          <a class="btn btn--primary" href="#care" onclick="showTab('out')">患者さま・ご家族の方へ</a>
+          <a class="btn btn--ghost" href="#care" onclick="showTab('partner')">医療・介護関係者の方へ</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="hrow">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.3-8.7C1.2 9.3 3 6 6.1 6c1.9 0 3.2 1.1 3.9 2.1C10.7 7.1 12 6 13.9 6 17 6 18.8 9.3 21.3 12.3 19 16.5 12 21 12 21z"/></svg></span>
+          <h3>こころとからだ、一つの窓口で</h3>
+        </div>
+        <div class="hrow">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/></svg></span>
+          <h3>通院できなくても、続けられる</h3>
+        </div>
+        <div class="hrow">
+          <span class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><path d="M3 20c0-3 2.3-5 5-5s5 2 5 5"/><circle cx="17.5" cy="10" r="2.2"/><path d="M15 20c0-2.4 1.6-4 3.4-4 1 0 1.9.5 2.6 1.3"/></svg></span>
+          <h3>お子さまからご高齢の方まで</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARE TABS -->
+  <section class="tabs" id="care">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kick">MEDICAL CARE</span>
+        <h2>診療案内</h2>
+        <p>ご来院での<b>外来診療</b>と、ご自宅・施設への<b>訪問診療</b>をご案内しています。ご希望の内容をお選びください。</p>
+      </div>
+      <div class="tablist" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="out" onclick="showTab('out')">外来のご案内</button>
+        <button role="tab" aria-selected="false" data-tab="home" onclick="showTab('home')">訪問診療</button>
+        <button role="tab" aria-selected="false" data-tab="partner" onclick="showTab('partner')">医療・介護連携</button>
+      </div>
+
+      <div class="panel active" id="panel-out">
+        <p class="lead-p">精神科・内科・小児科の外来を、<b>完全予約制</b>で行っています。はじめての方は、まずお電話ください。</p>
+        <div class="chips"><span class="chip">精神科<b>　成人〜</b></span><span class="chip">内科<b>　生後3ヶ月〜</b></span><span class="chip">小児科<b>　お子さま</b></span></div>
+        <p class="lead-p">気分の落ち込み・不安・不眠、認知症のご相談、お子さまの発達、生活習慣病まで。こころとからだの不調を、幅広くご相談いただけます。</p>
+        <div class="tab-foot">ご予約・ご相談は<a class="btn btn--link" href="#contact">お電話・フォームから ▶</a></div>
+      </div>
+
+      <div class="panel" id="panel-home">
+        <p class="lead-p">通院がむずかしくなった方のもとへ、医師がうかがう訪問診療を行っています。佳純会グループの訪問看護とも連携し、<b>医師・看護師</b>がご自宅・施設を訪問して、精神科・内科の両面から継続的に支えます。</p>
+        <h4 class="subhead">こんな方へ</h4>
+        <ul class="checks">
+          <li>通院がむずかしくなってきた</li>
+          <li>認知症やこころの不調がある</li>
+          <li>ひとり暮らし・高齢のご家族が心配</li>
+          <li>退院後の在宅療養に不安がある</li>
+          <li>住み慣れた自宅で療養を続けたい</li>
+          <li>施設での定期的な診療を希望</li>
+        </ul>
+        <h4 class="subhead">対応する主な状態（精神科・内科）</h4>
+        <div class="chips"><span class="chip">認知症・せん妄</span><span class="chip">うつ・不安</span><span class="chip">統合失調症</span><span class="chip">睡眠の悩み</span><span class="chip">生活習慣病</span></div>
+        <div class="area-box">
+          <h4>対応エリア</h4>
+          <p style="font-size:15px;color:var(--ink-soft);font-weight:500">訪問診療は保険制度上、クリニックから半径約16kmが対象範囲です。当院（豊中市中桜塚）を中心に、下記を目安に対応しています。</p>
+          <div class="area-core"><span>豊中市</span><span>箕面市</span><span>吹田市</span><span>池田市</span><span>大阪市（東淀川区 ほか）</span></div>
+          <div class="area-wide">その他、摂津市・茨木市・尼崎市・伊丹市・川西市、高槻市の一部 など（16km圏内を目安）</div>
+          <p class="note">※ エリア外でも、まずはお気軽にご相談ください。</p>
+        </div>
+        <div class="acc"><button class="acc-trig" onclick="toggleAcc(this)">ご利用までの流れ<span class="plus">＋</span></button>
+          <div class="acc-body">
+            <div class="step-row"><span class="n">1</span><div><b>お電話・フォームでご相談</b><br>ご本人・ご家族・ケアマネジャー様、どなたからでも。</div></div>
+            <div class="step-row"><span class="n">2</span><div><b>面談・打ち合わせ</b><br>ご状況やご希望、診療の進め方・費用をご説明します。</div></div>
+            <div class="step-row"><span class="n">3</span><div><b>訪問診療の開始</b><br>計画に沿って、定期的に医師・看護師がご自宅・施設へうかがいます。</div></div>
+          </div>
+        </div>
+        <div class="acc"><button class="acc-trig" onclick="toggleAcc(this)">費用について<span class="plus">＋</span></button><div class="acc-body">各種健康保険が適用されます。ご負担は自己負担割合（1割・3割など）に応じて変わります。おおよその費用は、お電話または面談時にご案内します。</div></div>
+        <div class="acc"><button class="acc-trig" onclick="toggleAcc(this)">書類の発行<span class="plus">＋</span></button><div class="acc-body">診療情報提供書・主治医意見書などの発行に対応します。介護保険の申請やサービス調整にもご活用ください。</div></div>
+        <div class="tab-foot">訪問診療のご相談は<a class="btn btn--link" href="#contact">お電話・フォームから ▶</a></div>
+      </div>
+
+      <div class="panel" id="panel-partner">
+        <p class="lead-p"><b>精神科・内科に対応できる訪問診療</b>をお探しの医療機関・ケアマネジャー・施設ご担当者さまへ。認知症やこころの不調、内科的な管理が必要な方の在宅・施設での療養を、医師・看護師が両面から支えます。</p>
+        <div class="acc open"><button class="acc-trig" onclick="toggleAcc(this)">ご紹介の流れ<span class="plus">＋</span></button>
+          <div class="acc-body">
+            <div class="step-row"><span class="n">1</span><div><b>お電話・フォームでご連絡</b>　ご状況をお伺いします。</div></div>
+            <div class="step-row"><span class="n">2</span><div><b>診療情報提供書のご用意</b>　ご用意いただけますとスムーズです。</div></div>
+            <div class="step-row"><span class="n">3</span><div><b>訪問診療の開始</b>　通院がむずかしい方へ、施設・ご自宅で対応します。</div></div>
+          </div>
+        </div>
+        <ul class="checks" style="grid-template-columns:1fr">
+          <li>精神科・内科の両面からの継続診療</li>
+          <li>診療情報提供書・主治医意見書の発行に対応</li>
+          <li>佳純会グループ（訪問看護など）との連携体制</li>
+        </ul>
+        <div class="area-box" style="padding:20px 24px">
+          <h4>対応エリア</h4>
+          <div class="area-core"><span>豊中市</span><span>箕面市</span><span>吹田市</span><span>池田市</span><span>大阪市（東淀川区 ほか）</span></div>
+          <p class="note" style="margin-top:8px">豊中市を中心に半径約16kmを目安に対応。高槻市・摂津市など周辺も対応可能な場合があります。詳しくはお問い合わせください。</p>
+        </div>
+        <div class="tab-foot">連携のご相談は<a class="btn btn--link" href="#contact">お電話・フォームから ▶</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOURS -->
+  <section class="tabs" id="hours" style="background:var(--orange-soft)">
+    <div class="wrap">
+      <div class="sec-head"><span class="kick">HOURS</span><h2>診療時間</h2><p>外来診療と訪問診療の曜日をまとめています（外来は完全予約制）。</p></div>
+      <div class="hours-legend">
+        <span><b class="lg lg-o">外来</b>ご来院いただけます</span>
+        <span><b class="lg lg-h">訪問</b>医師が訪問診療中（外来はお休み）</span>
+        <span><b class="lg lg-x">−</b>休診</span>
+      </div>
+      <div class="hours">
+        <table>
+          <thead><tr><th></th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="sat">土</th><th class="sun">日</th></tr></thead>
+          <tbody>
+            <tr><td class="tt">午前<br>9:30–12:30</td><td class="h">訪問</td><td class="h">訪問</td><td class="h">訪問</td><td class="o">外来</td><td class="o">外来</td><td class="x">−</td><td class="x">−</td></tr>
+            <tr><td class="tt">午後<br>14:00–18:00</td><td class="h">訪問</td><td class="h">訪問</td><td class="h">訪問</td><td class="o">外来</td><td class="h">訪問</td><td class="x">−</td><td class="x">−</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="hours-m">
+        <div class="hm-row"><span class="hm-day">月・火・水</span><span class="hm-tag h">訪問診療（外来はお休み）</span></div>
+        <div class="hm-row"><span class="hm-day">木</span><span class="hm-tag o">外来 午前・午後</span></div>
+        <div class="hm-row"><span class="hm-day">金</span><span class="hm-tag o">外来 午前</span><span class="hm-tag h">訪問 午後</span></div>
+        <div class="hm-row"><span class="hm-day">土・日</span><span class="hm-tag x">休診</span></div>
+      </div>
+      <ul class="hours-notes">
+        <li><b>外来（ご来院）</b>：木曜（終日）・金曜（午前）／完全予約制</li>
+        <li><b>月〜水・金曜午後</b>は医師が訪問診療にうかがうため、外来はお休みです（訪問診療は行っています）</li>
+        <li>木曜：今村 格 医師（第4木曜は午後のみ）／金曜午前：秋澤 一 院長／第5月曜：今村 格 医師</li>
+        <li>受付は午前 12:00まで／午後 17:30まで（金曜午前は 11:30まで）</li>
+        <li>休診日は土・日です（祝日は訪問診療のみ対応する場合があります）</li>
+      </ul>
+      <div class="hours-cta">
+        <div class="t">
+          <strong>訪問診療をご希望の方・外来のご予約は、お気軽にお電話ください。</strong>
+          <p>ご自宅や施設への訪問について、日程や対応エリアもお電話でご相談いただけます。</p>
+        </div>
+        <a class="btn btn--primary" href="tel:0676590299">お電話で相談する</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="why" id="why" style="background:var(--white)">
+    <div class="wrap">
+      <div class="sec-head"><span class="kick">FEATURES</span><h2>当院の特徴</h2></div>
+      <div class="why-grid">
+        <div class="why-card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></div><h3>精神科の在宅医療に対応</h3><p>認知症やこころの不調、せん妄など、精神科の視点が必要な方も、ご自宅・施設で継続して診られます。</p></div>
+        <div class="why-card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="12" r="4.2"/><circle cx="15.5" cy="12" r="4.2"/></svg></div><h3>訪問看護と連携した在宅支援</h3><p>佳純会グループの訪問看護と連携し、医師と看護師が協力して在宅療養を切れ目なく支えます。</p></div>
+        <div class="why-card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/><path d="M8 13l2.5 2.5L16 11"/></svg></div><h3>完全予約制で、安心して</h3><p>お待たせせず、プライバシーに配慮した環境で。はじめての方も落ち着いてご相談いただけます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCTORS -->
+  <section class="docs" id="docs" style="background:var(--orange-soft)">
+    <div class="wrap">
+      <div class="sec-head"><span class="kick">DOCTORS</span><h2>医師紹介</h2></div>
+      <div class="doc-list">
+        <div class="doc">
+          <div class="avatar"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+          <div class="doc-main">
+            <div class="doc-id"><span class="role">院長・代表理事</span><span class="name">秋澤 一<span class="fk">あきさわ はじめ</span></span></div>
+            <div class="doc-spec"><span class="badge">精神科（成人）</span></div>
+          </div>
+        </div>
+        <div class="doc">
+          <div class="avatar"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+          <div class="doc-main">
+            <div class="doc-id"><span class="role">医師</span><span class="name">今村 格<span class="fk">いまむら いたる</span></span></div>
+            <div class="doc-spec"><span class="badge">精神保健指定医</span><span class="dom">精神科・内科・小児科</span></div>
+          </div>
+        </div>
+        <div class="doc">
+          <div class="avatar"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+          <div class="doc-main">
+            <div class="doc-id"><span class="role">医師</span><span class="name">内科 担当医</span></div>
+            <div class="doc-spec"><span class="badge">内科</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission">
+    <div class="wrap">
+      <span class="kick">OUR MISSION</span>
+      <h2>地域の健康と安心を守るために、<br>できることを。</h2>
+      <p>2019年、豊中の地にはじめクリニックを開設して以来、北摂地域の皆さまのこころとからだに寄り添ってきました。住み慣れた場所で安心して暮らせるよう、外来から在宅まで、これからも地域とともに歩んでいきます。</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="sec-head"><span class="kick">CONTACT</span><h2>アクセス・お問い合わせ</h2></div>
+      <div class="contact-grid">
+        <div class="card">
+          <h3>アクセス</h3>
+          <div class="map"><iframe title="はじめクリニックの地図" loading="lazy" src="https://maps.google.com/maps?q=%E5%A4%A7%E9%98%AA%E5%BA%9C%E8%B1%8A%E4%B8%AD%E5%B8%82%E4%B8%AD%E6%A1%9C%E5%A1%9A5%E4%B8%81%E7%9B%AE3%E7%95%AA45%E5%8F%B7&z=16&output=embed"></iframe></div>
+          <div class="arow"><div class="k">所在地</div><div class="v">〒561-0881　大阪府豊中市中桜塚5丁目3番45号</div></div>
+          <div class="arow"><div class="k">アクセス</div><div class="v">阪急宝塚本線「岡町駅」より徒歩14分</div></div>
+          <div class="arow"><div class="k">診療時間</div><div class="v" style="font-size:15px">外来：木曜（終日）・金曜（午前）／月〜水・金午後は訪問診療　<a href="#hours" style="color:var(--green);font-weight:900;text-decoration:underline">詳細 ▶</a></div></div>
+          <div class="arow"><div class="k">FAX</div><div class="v">06-7659-0119</div></div>
+          <div class="badges"><span>完全予約制</span><span>土日休診</span><span>外来＋訪問診療</span></div>
+        </div>
+        <div class="card">
+          <h3>お問い合わせ</h3>
+          <div class="phone-block"><span class="lbl">お電話（完全予約制）</span><a href="tel:0676590299">06-7659-0299</a></div>
+          <div class="field"><label>お名前<span class="req">必須</span></label><input type="text" placeholder="山田 太郎"></div>
+          <div class="field"><label>ご連絡先（お電話 または メール）<span class="req">必須</span></label><input type="text" placeholder="090-0000-0000"></div>
+          <div class="field"><label>ご相談の種類</label><select><option>外来の受診について</option><option>訪問診療について</option><option>施設・ケアマネジャー連携について</option><option>採用について</option><option>その他</option></select></div>
+          <div class="field"><label>ご相談内容</label><textarea placeholder="ご相談内容をご記入ください"></textarea></div>
+          <button class="btn btn--primary" style="width:100%">送信する</button>
+          <p class="form-note">※ 送信いただいた内容はクリニックにて確認し、担当者よりご連絡します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECRUIT -->
+  <section class="recruit" id="recruit">
+    <div class="wrap rec-band">
+      <div class="txt">
+        <span class="kick">RECRUIT</span>
+        <h2>一緒に働く仲間を募集しています</h2>
+        <p>資格や経験以上に、仕事と向き合う姿勢を大切にしています。未経験・ブランクの方も歓迎します。</p>
+        <p class="role">現在の募集：<b>在宅医療事務スタッフ（未経験可）</b></p>
+      </div>
+      <div class="rec-actions">
+        <a class="btn btn--primary" href="#">採用情報を見る</a>
+        <a class="btn btn--ghost" href="#contact">お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="sec-head"><span class="kick">FAQ</span><h2>よくあるご質問</h2></div>
+      <div class="acc"><button class="acc-trig" onclick="toggleAcc(this)">予約はどうすればよいですか？<span class="plus">＋</span></button><div class="acc-body">お電話（06-7659-0299）またはお問い合わせフォームから承っています（完全予約制）。</div></div>
+      <div class="acc"><button class="acc-trig" onclick="toggleAcc(this)">訪問診療のエリアはどこですか？<span class="plus">＋</span></button><div class="acc-body">豊中市を中心に、半径約16kmを目安に対応しています（箕面市・吹田市・池田市・大阪市東淀川区 ほか）。エリア外もまずはご相談ください。</div></div>
+      <div class="acc"><button class="acc-trig" onclick="toggleAcc(this)">訪問診療には誰が来てくれますか？<span class="plus">＋</span></button><div class="acc-body">医師がうかがう訪問診療に加え、佳純会グループの訪問看護と連携し、看護師もご自宅・施設へうかがいます。医療と看護の両面で在宅療養を支えます。</div></div>
+      <div class="acc"><button class="acc-trig" onclick="toggleAcc(this)">費用はどのくらいかかりますか？<span class="plus">＋</span></button><div class="acc-body">各種健康保険が適用されます。ご負担は自己負担割合に応じて変わります。おおよその費用はお電話または面談時にご案内します。</div></div>
+      <div class="acc"><button class="acc-trig" onclick="toggleAcc(this)">通院が難しくなったらどうすれば？<span class="plus">＋</span></button><div class="acc-body">外来から訪問診療へ切り替えることも可能です。まずはご相談ください。</div></div>
+      <div class="acc"><button class="acc-trig" onclick="toggleAcc(this)">紹介状は必要ですか？<span class="plus">＋</span></button><div class="acc-body">診療情報提供書があるとスムーズですが、なくても構いません。まずはご連絡ください。</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="fcorp">一般社団法人 佳純会</div>
+        <div class="fname">はじめクリニック</div>
+        <p class="fadd">〒561-0881　大阪府豊中市中桜塚5丁目3番45号／阪急「岡町駅」徒歩14分</p>
+      </div>
+      <div class="foot-contact">
+        <a class="ftel" href="tel:0676590299">06-7659-0299</a>
+        <div class="foot-links"><a href="#care">診療案内</a><a href="#hours">診療時間</a><a href="#contact">アクセス・お問い合わせ</a><a href="#recruit">採用情報</a></div>
+      </div>
+    </div>
+    <div class="copy">© はじめクリニック（一般社団法人 佳純会）／ 完全予約制</div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="ページ上部へ戻る">↑</button>
+
+<div class="mbar"><div class="wrap mbar-grid" style="width:100%">
+  <a class="call" href="tel:0676590299"><svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2.2 1.1a12 12 0 006.1 6.1L16 14l5 2v3a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z"/></svg>電話する</a>
+  <a href="#care" onclick="showTab('out')"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>診療案内</a>
+  <a href="#contact"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 6l8 6 8-6"/></svg>お問い合わせ</a>
+</div></div>
+
+<script>
+  function showTab(id){
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+    document.querySelectorAll('.tablist button').forEach(function(b){b.setAttribute('aria-selected', b.dataset.tab===id?'true':'false')});
+    var panel=document.getElementById('panel-'+id); if(panel) panel.classList.add('active');
+  }
+  function toggleAcc(btn){ btn.parentElement.classList.toggle('open'); }
+  var tt=document.getElementById('toTop');
+  window.addEventListener('scroll',function(){ tt.classList.toggle('show', window.scrollY>500); });
+  tt.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  document.querySelectorAll('#nav a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open')})});
+</script>
+</body>
+</html>
