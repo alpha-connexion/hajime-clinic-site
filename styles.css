@@ -294,3 +294,31 @@
   .apply-cta .apply-tel{font-family:var(--display);font-size:26px;color:var(--green);font-weight:900;text-decoration:none;display:inline-block;margin-bottom:14px}
   .apply-actions{display:flex;gap:12px;flex-wrap:wrap}
   @media (max-width:560px){.apply-actions .btn{width:100%}}
+
+  /* ---- recruit landing (promotional) ---- */
+  .rhero{background:radial-gradient(820px 420px at 88% -10%,var(--orange-soft2),transparent 60%),linear-gradient(180deg,var(--orange-soft),var(--cream) 82%);padding:60px 0 56px}
+  .rhero .breadcrumb{margin-bottom:18px}
+  .rhero h1{font-size:clamp(29px,4.6vw,44px);color:var(--ink);font-weight:900;line-height:1.5;margin-bottom:18px}
+  .rhero .lead{font-size:18px;color:var(--ink-soft);max-width:52ch;font-weight:500;margin-bottom:28px}
+  .rhero-cta{display:flex;gap:12px;flex-wrap:wrap}
+  @media (max-width:560px){.rhero-cta .btn{width:100%}}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .stat{background:#fff;border:2px solid var(--line);border-radius:16px;padding:24px 20px;text-align:center}
+  .stat .num{font-family:var(--display);font-size:clamp(28px,3.6vw,38px);font-weight:900;color:var(--orange-deep);line-height:1.1}
+  .stat .num small{font-size:16px;font-weight:900}
+  .stat .lbl{font-size:14px;color:var(--ink-soft);font-weight:700;margin-top:7px;line-height:1.6}
+  @media (max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+  @media (max-width:430px){.stat{padding:18px 12px}}
+
+  .story{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+  .story.rev .story-text{order:2}
+  .story-text h3{font-size:clamp(21px,2.8vw,28px);color:var(--ink);font-weight:900;margin:8px 0 16px;line-height:1.55}
+  .story-text p{font-size:16px;color:var(--ink-soft);font-weight:500;line-height:2;margin-bottom:14px}
+  .story-text p:last-child{margin-bottom:0}
+  .story-panel{border-radius:22px;min-height:300px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--line)}
+  .story-panel img{width:100%;height:100%;object-fit:cover;display:block}
+  .story-panel.p1{background:radial-gradient(circle at 32% 30%,var(--orange-soft2),var(--orange-soft))}
+  .story-panel.p2{background:radial-gradient(circle at 68% 32%,#FFE7D2,#FFF3E7)}
+  .story-panel svg{width:104px;height:104px;stroke:var(--orange-deep);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  @media (max-width:820px){.story{grid-template-columns:1fr;gap:20px}.story.rev .story-text{order:0}.story-panel{min-height:210px}.story-panel svg{width:80px;height:80px}}
