@@ -194,6 +194,10 @@
   .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green)}
   .field textarea{min-height:96px;resize:vertical}
   .form-note{font-size:12.5px;color:var(--ink-mute);font-weight:500;margin-top:10px}
+  .hp-field{position:absolute;left:-5000px;top:auto;width:1px;height:1px;overflow:hidden}
+  .form-status{margin-top:16px;padding:14px 16px;border-radius:12px;font-size:14.5px;font-weight:700;line-height:1.7}
+  .form-status.ok{background:var(--green-soft);color:var(--green)}
+  .form-status.err{background:#FBEAEA;color:#B3261E}
 
   /* recruit */
   .recruit{background:var(--white)}
@@ -506,12 +510,19 @@
         <div class="card">
           <h3>お問い合わせ</h3>
           <div class="phone-block"><span class="lbl">お電話（完全予約制）</span><a href="tel:0676590299">06-7659-0299</a></div>
-          <div class="field"><label>お名前<span class="req">必須</span></label><input type="text" placeholder="山田 太郎"></div>
-          <div class="field"><label>ご連絡先（お電話 または メール）<span class="req">必須</span></label><input type="text" placeholder="090-0000-0000"></div>
-          <div class="field"><label>ご相談の種類</label><select><option>外来の受診について</option><option>訪問診療について</option><option>施設・ケアマネジャー連携について</option><option>採用について</option><option>その他</option></select></div>
-          <div class="field"><label>ご相談内容</label><textarea placeholder="ご相談内容をご記入ください"></textarea></div>
-          <button class="btn btn--primary" style="width:100%">送信する</button>
-          <p class="form-note">※ 送信いただいた内容はクリニックにて確認し、担当者よりご連絡します。</p>
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hp-field"><label>入力しないでください<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <div id="cfFields">
+              <div class="field"><label for="cf-name">お名前<span class="req">必須</span></label><input id="cf-name" type="text" name="name" placeholder="山田 太郎" required></div>
+              <div class="field"><label for="cf-contact">ご連絡先（お電話 または メール）<span class="req">必須</span></label><input id="cf-contact" type="text" name="contact-info" placeholder="090-0000-0000" required></div>
+              <div class="field"><label for="cf-type">ご相談の種類</label><select id="cf-type" name="inquiry-type"><option>外来の受診について</option><option>訪問診療について</option><option>施設・ケアマネジャー連携について</option><option>採用について</option><option>その他</option></select></div>
+              <div class="field"><label for="cf-message">ご相談内容</label><textarea id="cf-message" name="message" placeholder="ご相談内容をご記入ください"></textarea></div>
+              <button class="btn btn--primary" type="submit" style="width:100%" id="cfSubmit">送信する</button>
+              <p class="form-note">※ 送信いただいた内容はクリニックにて確認し、担当者よりご連絡します。</p>
+            </div>
+            <p class="form-status" id="cfStatus" role="status" aria-live="polite" style="display:none"></p>
+          </form>
         </div>
       </div>
     </div>
@@ -527,7 +538,7 @@
         <p class="role">現在の募集：<b>在宅医療事務スタッフ（未経験可）</b></p>
       </div>
       <div class="rec-actions">
-        <a class="btn btn--primary" href="#">採用情報を見る</a>
+        <a class="btn btn--primary" href="#contact">採用情報を見る</a>
         <a class="btn btn--ghost" href="#contact">お問い合わせ</a>
       </div>
     </div>
@@ -584,6 +595,35 @@
   window.addEventListener('scroll',function(){ tt.classList.toggle('show', window.scrollY>500); });
   tt.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
   document.querySelectorAll('#nav a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open')})});
+
+  (function(){
+    var form = document.getElementById('contactForm');
+    if(!form) return;
+    var fields = document.getElementById('cfFields');
+    var status = document.getElementById('cfStatus');
+    var submitBtn = document.getElementById('cfSubmit');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中…';
+      var data = new URLSearchParams(new FormData(form)).toString();
+      fetch('/', { method: 'POST', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: data })
+        .then(function(res){ if(!res.ok) throw new Error('submit failed'); })
+        .then(function(){
+          fields.style.display = 'none';
+          status.textContent = 'お問い合わせを受け付けました。担当者よりご連絡いたします。';
+          status.className = 'form-status ok';
+          status.style.display = 'block';
+        })
+        .catch(function(){
+          status.textContent = '送信に失敗しました。お手数ですが、お電話（06-7659-0299）にてご連絡ください。';
+          status.className = 'form-status err';
+          status.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = '送信する';
+        });
+    });
+  })();
 </script>
 </body>
 </html>
