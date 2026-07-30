@@ -322,3 +322,17 @@
   .story-panel.p2{background:radial-gradient(circle at 68% 32%,#FFE7D2,#FFF3E7)}
   .story-panel svg{width:104px;height:104px;stroke:var(--orange-deep);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
   @media (max-width:820px){.story{grid-template-columns:1fr;gap:20px}.story.rev .story-text{order:0}.story-panel{min-height:210px}.story-panel svg{width:80px;height:80px}}
+
+  /* ---- legal / privacy policy ---- */
+  .legal{max-width:min(820px,92vw);margin:0 auto}
+  .legal .intro{font-size:16px;color:var(--ink-soft);font-weight:500;line-height:1.95;margin-bottom:8px}
+  .legal h2{font-size:19px;color:var(--ink);font-weight:900;margin:34px 0 12px;padding-top:22px;border-top:1px solid var(--line)}
+  .legal h2:first-of-type{border-top:none;padding-top:6px}
+  .legal h3{font-size:15.5px;color:var(--orange-deep);font-weight:900;margin:18px 0 6px}
+  .legal p{font-size:15.5px;color:var(--ink-soft);font-weight:500;line-height:1.95;margin-bottom:12px}
+  .legal ul{margin:6px 0 14px;padding-left:1.35em;list-style:disc}
+  .legal li{font-size:15px;color:var(--ink-soft);font-weight:500;line-height:1.85;margin-bottom:5px}
+  .legal .info-box{background:var(--orange-soft);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:8px 0}
+  .legal .info-box p{margin:0 0 4px;color:var(--ink)}
+  .legal a{color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:3px;word-break:break-all}
+  .legal .revised{font-size:14px;color:var(--ink-mute);margin-top:28px;padding-top:14px;border-top:1px solid var(--line);text-align:right}
