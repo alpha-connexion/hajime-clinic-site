@@ -1,3 +1,10 @@
+# Redirect the default Netlify subdomain to the primary custom domain (SEO: one canonical host).
+[[redirects]]
+  from = "https://hajime-clinic.netlify.app/*"
+  to = "https://hajime.n-clinics.jp/:splat"
+  status = 301
+  force = true
+
 # Security + caching headers for the static clinic site.
 [[headers]]
   for = "/*"
