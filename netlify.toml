@@ -1,3 +1,27 @@
+# URL policy: clean, extension-less URLs (/recruit rather than /recruit.html).
+# Netlify serves the extension-less form (pretty_urls); the .html form 301-redirects to it,
+# so there is exactly one canonical URL per page (matching the canonical tags + sitemap).
+[build.processing.html]
+  pretty_urls = true
+
+[[redirects]]
+  from = "/recruit.html"
+  to = "/recruit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/recruit-clerk.html"
+  to = "/recruit-clerk"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy"
+  status = 301
+  force = true
+
 # Redirect the default Netlify subdomain to the primary custom domain (SEO: one canonical host).
 [[redirects]]
   from = "https://hajime-clinic.netlify.app/*"
