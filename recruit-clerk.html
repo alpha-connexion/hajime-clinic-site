@@ -108,6 +108,7 @@
       <span class="kick">JOB DESCRIPTION</span>
       <h1>在宅医療事務／受付</h1>
       <div class="job-tags" style="margin-top:6px"><span class="tag">正職員</span><span class="tag">経験者募集</span><span class="tag">ブランク可</span><span class="tag">土日休み</span><span class="tag">年間休日128日</span></div>
+      <div class="rhero-cta" style="margin-top:22px"><a class="btn btn--primary" href="#apply">この職種に応募する ▶</a></div>
     </div>
   </section>
 
@@ -143,15 +144,35 @@
         <div class="jd-row"><div class="jk">選考の流れ</div><div class="jv">お問い合わせ・ご応募 → 面接（WEB面接も可能） → 採用</div></div>
       </div>
 
-      <div class="apply-cta">
-        <h3>ご応募・お問い合わせ</h3>
-        <p>まずはお気軽にご連絡ください。ご質問だけでも歓迎します。お問い合わせフォームでは「ご相談の種類」で「採用について」をお選びください。</p>
-        <a class="apply-tel" href="tel:0676590299">06-7659-0299</a>
-        <div class="apply-actions">
-          <a class="btn btn--primary" href="index.html#contact">お問い合わせフォーム</a>
-          <a class="btn btn--ghost" href="recruit.html">採用情報にもどる</a>
+      <div class="sec-head" style="margin-bottom:14px" id="apply"><span class="kick">APPLY</span><h2 style="font-size:22px">ご応募フォーム</h2></div>
+      <p class="jd-lead" style="margin-bottom:20px">下記フォームからご応募ください。お電話（<a href="tel:0676590299" style="color:var(--green);font-weight:900">06-7659-0299</a>）でのご応募・ご質問も歓迎します。履歴書・職務経歴書は、後日メールや面接時のご提出でも構いません。</p>
+      <form name="job-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" id="applyForm" class="apply-card">
+        <input type="hidden" name="form-name" value="job-application">
+        <input type="hidden" name="position" value="在宅医療事務／受付">
+        <input type="hidden" name="position-url" value="https://hajime.n-clinics.jp/recruit-clerk">
+        <p class="hp-field"><label>入力しないでください<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div id="afFields">
+          <div class="field"><div class="flabel"><label for="af-position">応募職種</label></div><input id="af-position" type="text" value="在宅医療事務／受付" readonly style="background:var(--orange-soft);font-weight:700"></div>
+          <div class="field"><div class="flabel"><label for="af-name">お名前</label><span class="req">必須</span></div><input id="af-name" type="text" name="name" placeholder="山田 花子" required></div>
+          <div class="field"><div class="flabel"><label for="af-kana">ふりがな</label></div><input id="af-kana" type="text" name="kana" placeholder="やまだ はなこ"></div>
+          <p class="req-note">※ メールアドレス・電話番号は<b>いずれか一方</b>のご入力で構いません。ご入力いただいた連絡先へご連絡いたします。</p>
+          <div class="field"><div class="flabel"><label for="af-email">メールアドレス</label></div><input id="af-email" type="email" name="email" placeholder="example@mail.com"></div>
+          <div class="field"><div class="flabel"><label for="af-tel">電話番号</label></div><input id="af-tel" type="tel" name="phone" placeholder="090-0000-0000"></div>
+          <div class="field"><div class="flabel"><label for="af-bg">ご経歴・自己PR・志望動機など</label></div><textarea id="af-bg" name="background" placeholder="これまでのご経歴や、ご自身のアピールポイント、志望動機などをご自由にご記入ください"></textarea></div>
+          <div class="field"><div class="flabel"><label for="af-resume">履歴書（任意）</label></div><input id="af-resume" type="file" name="resume" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"><p class="file-note">PDF・Word・Excel・画像に対応／1件5MBまで</p></div>
+          <div class="field"><div class="flabel"><label for="af-cv">職務経歴書（任意）</label></div><input id="af-cv" type="file" name="career-sheet" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"><p class="file-note">PDF・Word・Excel・画像に対応／1件5MBまで</p></div>
+          <p class="form-note">※ 送信いただいた個人情報は、採用選考およびご連絡の目的にのみ利用します。詳しくは<a href="privacy.html" style="color:var(--green);font-weight:700">プライバシーポリシー</a>をご覧ください。</p>
+          <p class="form-status err" id="afError" style="display:none"></p>
+          <button class="btn btn--primary" type="submit" id="afSubmit" style="width:100%">この職種に応募する</button>
         </div>
-      </div>
+        <div class="thanks-card" id="afThanks" style="display:none" role="status" aria-live="polite">
+          <h3>ご応募ありがとうございます</h3>
+          <p>数ある求人の中から当院にご興味をお持ちいただき、心よりお礼申しあげます。ご応募を受け付けました。内容を確認のうえ、<b>3営業日以内</b>に担当者より、ご入力いただいた連絡先（メールまたはお電話）へご連絡いたします。</p>
+          <p>3営業日を過ぎても連絡がない場合は、お手数ですが <a href="tel:0676590299">06-7659-0299</a> までお電話いただけますと幸いです。</p>
+          <div class="job-url">この求人ページ（あとで見返す場合はこちら）：<br>https://hajime.n-clinics.jp/recruit-clerk</div>
+        </div>
+      </form>
+      <p style="margin-top:18px"><a class="btn btn--link" href="recruit.html">← 採用情報にもどる</a></p>
     </div>
   </section>
 
@@ -179,7 +200,7 @@
 <div class="mbar"><div class="wrap mbar-grid" style="width:100%">
   <a class="call" href="tel:0676590299"><svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2.2 1.1a12 12 0 006.1 6.1L16 14l5 2v3a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z"/></svg>電話する</a>
   <a href="recruit.html"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>採用情報</a>
-  <a href="index.html#contact"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 6l8 6 8-6"/></svg>お問い合わせ</a>
+  <a href="#apply"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 6l8 6 8-6"/></svg>応募する</a>
 </div></div>
 
 <script>
@@ -187,6 +208,40 @@
   window.addEventListener('scroll',function(){ tt.classList.toggle('show', window.scrollY>500); });
   tt.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
   document.querySelectorAll('#nav a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open')})});
+
+  (function(){
+    var form = document.getElementById('applyForm');
+    if(!form) return;
+    var fields = document.getElementById('afFields');
+    var thanks = document.getElementById('afThanks');
+    var err = document.getElementById('afError');
+    var btn = document.getElementById('afSubmit');
+    function fail(msg){
+      err.textContent = msg; err.style.display = 'block';
+      btn.disabled = false; btn.textContent = 'この職種に応募する';
+    }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      err.style.display = 'none';
+      var email = document.getElementById('af-email').value.trim();
+      var tel = document.getElementById('af-tel').value.trim();
+      if(!email && !tel){ fail('メールアドレスまたは電話番号のいずれかをご入力ください。'); return; }
+      var uploads = [document.getElementById('af-resume'), document.getElementById('af-cv')];
+      for(var i=0;i<uploads.length;i++){
+        var f = uploads[i].files[0];
+        if(f && f.size > 5*1024*1024){ fail('ファイルサイズは1件5MBまでです。サイズを小さくするか、ファイルなしで送信のうえ、後日ご提出ください。'); return; }
+      }
+      btn.disabled = true; btn.textContent = '送信中…';
+      fetch('/', { method: 'POST', body: new FormData(form) })
+        .then(function(res){ if(!res.ok) throw new Error('submit failed'); })
+        .then(function(){
+          fields.style.display = 'none';
+          thanks.style.display = 'block';
+          thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .catch(function(){ fail('送信に失敗しました。お手数ですが、お電話（06-7659-0299）にてご連絡ください。'); });
+    });
+  })();
 </script>
 </body>
 </html>
