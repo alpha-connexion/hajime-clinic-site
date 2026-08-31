@@ -1,24 +1,69 @@
 // Netlify event function: fires on every verified (non-spam) form submission.
-// Sends an application-confirmation email to the candidate via Resend.
-// No-ops safely until RESEND_API_KEY is configured in the Netlify env,
-// and ignores every form except "job-application".
+// For "job-application" submissions it sends, via Resend:
+//   1) a confirmation email to the candidate (when they provided an email)
+//   2) a staff notification to the clinic inbox with a UNIQUE subject per
+//      submission (【採用応募】name様（position）) so Gmail never threads
+//      separate applications together. Reply-To is the candidate.
+// No-ops safely until RESEND_API_KEY is configured in the Netlify env.
 exports.handler = async (event) => {
   const ok = (msg) => ({ statusCode: 200, body: msg });
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.CONFIRM_FROM || "はじめクリニック 採用担当 <noreply@n-clinics.jp>";
+  const CLINIC_INBOX = "hajime.a.cl@gmail.com";
+
+  const send = (msg) =>
+    fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify(msg),
+    });
+
   try {
     const { payload } = JSON.parse(event.body || "{}");
     if (!payload || payload.form_name !== "job-application") return ok("skip: not job-application");
+    if (!apiKey) return ok("skip: RESEND_API_KEY not configured");
 
     const data = payload.data || {};
     const email = (data.email || "").trim();
-    if (!email) return ok("skip: no candidate email");
-
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) return ok("skip: RESEND_API_KEY not configured");
-
-    const from = process.env.CONFIRM_FROM || "はじめクリニック 採用担当 <noreply@n-clinics.jp>";
     const name = (data.name || "").trim();
+    const kana = (data.kana || "").trim();
+    const phone = (data.phone || "").trim();
+    const background = (data.background || "").trim();
     const position = (data.position || "求人").trim();
     const positionUrl = (data["position-url"] || "https://hajime.n-clinics.jp/recruit").trim();
+
+    // --- 1) staff notification (unique subject; Reply-To = candidate) ---
+    const staffText = `ウェブサイトから求人応募がありました。
+
+■ 応募職種：${position}
+　${positionUrl}
+
+■ お名前：${name || "（未入力）"}${kana ? `（${kana}）` : ""}
+■ メール：${email || "（未入力）"}
+■ 電話　：${phone || "（未入力）"}
+
+■ ご経歴・自己PR・志望動機：
+${background || "（未入力）"}
+
+■ 添付書類（履歴書・職務経歴書）：
+Netlifyの管理画面からダウンロードできます（添付があった場合）。
+https://app.netlify.com/projects/hajime-clinic/forms
+
+※ このメールに返信すると、応募者${email ? "のメールアドレス宛に届きます" : "には届きません（メール未入力のため、お電話でご連絡ください）"}。
+※ 3営業日以内のご連絡をお願いします。`;
+
+    const staffMsg = {
+      from,
+      to: [CLINIC_INBOX],
+      subject: `【採用応募】${name || "お名前未入力"}様（${position}）`,
+      text: staffText,
+    };
+    if (email) staffMsg.reply_to = email;
+    const staffRes = await send(staffMsg);
+    if (!staffRes.ok) console.error("Resend staff-mail error:", staffRes.status, await staffRes.text());
+
+    // --- 2) candidate confirmation (only when they gave an email) ---
+    if (!email) return ok("staff notified; no candidate email");
 
     const text = `${name ? name + " 様" : "ご応募者さま"}
 
