@@ -17,6 +17,12 @@
   force = true
 
 [[redirects]]
+  from = "/recruit-nurse.html"
+  to = "/recruit-nurse"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/privacy.html"
   to = "/privacy"
   status = 301
