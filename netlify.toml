@@ -28,6 +28,12 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
 # Redirect the default Netlify subdomain to the primary custom domain (SEO: one canonical host).
 [[redirects]]
   from = "https://hajime-clinic.netlify.app/*"
