@@ -11,6 +11,7 @@
   gtag('js', new Date());
   gtag('config', 'G-2F4H03582J', { cookie_domain: 'hajime.n-clinics.jp', allow_google_signals: false, allow_ad_personalization_signals: false });
 </script>
+<script src="/ga-events.js" defer></script>
 <title>はじめクリニック｜豊中市・岡町駅の精神科・内科｜外来・訪問診療</title>
 <meta name="description" content="豊中市・岡町の精神科・内科クリニック。外来診療と、通院がむずかしい方への訪問診療（在宅医療）に対応。認知症・不眠・こころの不調から内科まで、佳純会グループの訪問看護と連携し地域を支えます。予約優先制。">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -342,7 +343,7 @@
             <div id="cfFields">
               <div class="field"><div class="flabel"><label for="cf-name">お名前</label><span class="req">必須</span></div><input id="cf-name" type="text" name="name" placeholder="山田 太郎" required></div>
               <div class="field"><div class="flabel"><label for="cf-contact">ご連絡先（お電話 または メール）</label><span class="req">必須</span></div><input id="cf-contact" type="text" name="contact-info" placeholder="090-0000-0000" required></div>
-              <div class="field"><label for="cf-type">ご相談の種類</label><select id="cf-type" name="inquiry-type"><option>外来の受診について</option><option>訪問診療について</option><option>施設・ケアマネジャー連携について</option><option>採用について</option><option>その他</option></select></div>
+              <div class="field"><label for="cf-type">ご相談の種類</label><select id="cf-type" name="inquiry-type"><option data-t="care">外来の受診について</option><option data-t="care">訪問診療について</option><option data-t="care">施設・ケアマネジャー連携について</option><option data-t="recruit">採用について</option><option data-t="other">その他</option></select></div>
               <div class="field"><label for="cf-message">ご相談内容</label><textarea id="cf-message" name="message" placeholder="ご相談内容をご記入ください"></textarea></div>
               <button class="btn btn--primary" type="submit" style="width:100%" id="cfSubmit">送信する</button>
               <p class="form-note">※ 送信いただいた内容はクリニックにて確認し、担当者よりご連絡します。</p>
@@ -430,12 +431,15 @@
     var submitBtn = document.getElementById('cfSubmit');
     form.addEventListener('submit', function(e){
       e.preventDefault();
+      var sel = document.getElementById('cf-type');
+      var topic = (sel && sel.options[sel.selectedIndex] && sel.options[sel.selectedIndex].dataset.t) || 'other';
       submitBtn.disabled = true;
       submitBtn.textContent = '送信中…';
       var data = new URLSearchParams(new FormData(form)).toString();
       fetch('/', { method: 'POST', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: data })
         .then(function(res){ if(!res.ok) throw new Error('submit failed'); })
         .then(function(){
+          if(window.hjTrack){ if(topic === 'recruit') hjTrack('recruit_inquiry_submit'); else hjTrack('contact_form_submit', { form_topic: topic }); }
           fields.style.display = 'none';
           status.textContent = 'お問い合わせを受け付けました。担当者よりご連絡いたします。';
           status.className = 'form-status ok';
